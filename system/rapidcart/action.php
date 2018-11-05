@@ -1,12 +1,13 @@
 <?php
 
 class Action {
-	private $id;
-	private $route;
+	private $id = '';
+	private $route = array();
 	private $method = 'index';
 	
 	public function __construct($route) {
 		$this->id = $route;
+		
 		$parts = explode('/', preg_replace('#[^a-zA-Z0-9_/]#', '', (string) $route));
 
 		while ($parts) {
@@ -28,7 +29,7 @@ class Action {
 
 	public function execute($registry, array $args = array()) {
 		if (substr($this->method, 0, 2) == '__') {
-			return new \Exception('Error: Calls to magic methods are disabled!');
+			return new \Exception('Error: Magic methods disabled!');
 		}
 
 		$file  = sprintf('%scontroller/%s.php', DIR_APPLICATION, $this->route);
