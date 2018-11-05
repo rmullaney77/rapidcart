@@ -36,7 +36,7 @@ class Action {
 		$class = 'Controller' . preg_replace('/[^a-zA-Z0-9]/', '', $this->route);
 		
 		if (is_file($file)) {
-			include_once(modification($file));
+			include_once modification($file);
 		
 			$controller = new $class($registry);
 			
