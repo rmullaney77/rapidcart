@@ -7,7 +7,7 @@ class Action {
 	
 	public function __construct($route) {
 		$this->id = $route;
-		$parts = explode('/', preg_replace('/[^a-zA-Z0-9_\/]/', '', (string) $route));
+		$parts = explode('/', preg_replace('#[^a-zA-Z0-9_/]#', '', (string) $route));
 
 		while ($parts) {
 			$file = sprintf('%scontroller/%s.php', DIR_APPLICATION, implode('/', $parts));
